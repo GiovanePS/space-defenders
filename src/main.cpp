@@ -1,11 +1,16 @@
 #include <SFML/Graphics.hpp>
+#include "headers/Player.hpp"
 
 int main() {
+  // Window configurations
   sf::VideoMode screensize = sf::VideoMode::getDesktopMode();
-  sf::RenderWindow window(screensize, "SFML works!");
-  sf::CircleShape player(100.f);
-  player.setFillColor(sf::Color::Blue);
-  player.setPosition(250, 400);
+  sf::RenderWindow window(screensize, "Space Defenders");
+
+  sf::Texture playerTexture;
+  if (!playerTexture.loadFromFile("assets/spaceship.png")) {
+    return -1;
+  }
+  Player player(&playerTexture);
 
   while (window.isOpen()) {
     sf::Event event;
@@ -19,15 +24,10 @@ int main() {
       window.close();
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-      player.move(-0.3f, 0.0f);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-      player.move(0.3f, 0.0f);
-    }
+    player.Movement(); // Player movements
 
     window.clear();
-    window.draw(player);
+    player.Draw(window);
     window.display();
   }
 

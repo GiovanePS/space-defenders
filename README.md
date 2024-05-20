@@ -29,7 +29,9 @@ mais de 50% das naves chegaram no solo  (derrota do jogador).
 ### 2. Compile com CMake:
 ```
   cd space-defenders
-  cmake .
+  mkdir build
+  cd build
+  cmake ..
   make
 ```
 
