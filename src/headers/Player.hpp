@@ -18,12 +18,29 @@ class Player {
     window.draw(shape);
   }
 
-  void Movement() {
+  void Movement(sf::RenderWindow &window) {
+    sf::Vector2f movement(0.0f, 0.0f);
+    
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-      shape.move(-0.3f, 0.0f);
+      movement.x -= 0.3f;
+      // shape.move(-0.3f, 0.0f);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-      shape.move(0.3f, 0.0f);
+      movement.x += 0.3f;
+      // shape.move(0.3f, 0.0f);
     }
+
+    // Collision with window wall
+    sf::Vector2f newPosition = shape.getPosition() + movement;
+    sf::Vector2u windowSize = window.getSize();
+
+    if (newPosition.x < 0) {
+      newPosition.x = 0.0f;
+    }
+    if (newPosition.x + shape.getSize().x > windowSize.x) {
+      newPosition.x = windowSize.x - shape.getSize().x;
+    }
+
+    shape.setPosition(newPosition);
   }
 };

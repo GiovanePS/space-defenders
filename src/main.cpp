@@ -15,7 +15,6 @@ int main() {
   sf::VideoMode screensize = sf::VideoMode::getDesktopMode();
   sf::RenderWindow window(screensize, "Space Defenders");
 
-
   // Texture settings
   sf::Texture playerTexture;
   if (!playerTexture.loadFromFile("assets/spaceship.png")) {
@@ -42,7 +41,7 @@ int main() {
       window.close();
     }
 
-    player.Movement(); // Player movements
+    player.Movement(window); // Player movements
 
     window.clear();
     player.Draw(window);
