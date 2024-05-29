@@ -1,6 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "headers/Player.hpp"
+#include "player/Player.hpp"
 #include <pthread.h>
 
 struct ThreadData {
@@ -14,13 +14,8 @@ int main() {
   // Window settings
   sf::VideoMode screensize = sf::VideoMode::getDesktopMode();
   sf::RenderWindow window(screensize, "Space Defenders");
-
-  // Texture settings
-  sf::Texture playerTexture;
-  if (!playerTexture.loadFromFile("assets/spaceship.png")) {
-    return -1;
-  }
-  Player player(&playerTexture);
+  
+  Player player = Player();
 
   // Thread settings
   pthread_t threads[1];
@@ -58,7 +53,7 @@ void *thread_printing(void *arg) {
   sf::RenderWindow *window = data->window;
 
   while (window->isOpen()) {
-  std::cout << "Thread is printing!!" << std::endl;
+  // std::cout << "Thread is printing!!" << std::endl;
   }
   std::cout << "Bye!!" << std::endl;
 
