@@ -6,15 +6,15 @@ using namespace std;
 Player::Player() {
   shape.setSize(sf::Vector2f(100.0f, 100.0f));
   shape.setPosition(900.0f, 960.0f);
-  this->SetTexture(string("./assets/spaceship.png"));
+  this->SetTexture("assets/spaceship.png");
 }
 
 Player::~Player() {}
 
-int Player::SetTexture(string path) {
-  sf::Texture texture;
+int Player::SetTexture(const string &path) {
   if (!texture.loadFromFile(path)) {
-    exit(1);
+    cerr << "Error on loading texture from " << path << endl;
+    return 1;
   } else {
     shape.setTexture(&texture);
     return 0;
