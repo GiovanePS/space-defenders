@@ -4,16 +4,21 @@
 using namespace std;
 
 Player::Player() {
-  shape.setSize(sf::Vector2f(100.0f, 100.0f));
-  shape.setPosition(900.0f, 960.0f);
+  shape.setSize(sf::Vector2f(75.0f, 75.0f));
+  shape.setPosition(0.0f, 0.0f);
   this->SetTexture("assets/spaceship.png");
 }
 
 Player::~Player() {}
 
-int Player::SetTexture(const string &path) {
+sf::Texture Player::getTexture() {
+  return sf::Texture();
+}
+
+int Player::SetTexture(const string &path)
+{
   if (!texture.loadFromFile(path)) {
-    cerr << "Error on loading texture from " << path << endl;
+    cerr << "Error on loading texture from " << path << endl; 
     return 1;
   } else {
     shape.setTexture(&texture);

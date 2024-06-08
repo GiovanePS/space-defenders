@@ -12,6 +12,7 @@ class Player {
     Player();
     ~Player();
 
+    sf::Texture getTexture();
     int SetTexture(const string &path);
     void Draw(sf::RenderWindow &window);
     void Movement(sf::RenderWindow &window);
