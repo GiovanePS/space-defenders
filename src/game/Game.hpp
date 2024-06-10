@@ -10,6 +10,8 @@ class Game {
     sf::RenderWindow *window;
     sf::VideoMode videoMode;
     sf::Event event;
+    sf::Sprite backgroundSprite;
+    sf::Texture backgroundTexture;
 
     // Game logic
 
@@ -27,6 +29,7 @@ class Game {
 
     void InitVariables();
     void InitWindow();
+    void InitBackground();
   public:
     Game();
     ~Game();
@@ -45,6 +48,7 @@ class Game {
     void UpdateEnemies();
     void Update();
 
+    void RenderBackground(sf::RenderWindow *window);
     void RenderEnemies(sf::RenderWindow *window);
     void Render();
 };

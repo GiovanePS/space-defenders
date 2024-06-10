@@ -18,8 +18,19 @@ void Game::InitWindow()
   this->videoMode.height = 800;
 
   this->window = new sf::RenderWindow(this->videoMode, "Space Defenders", sf::Style::Titlebar | sf::Style::Close);
+  this->InitBackground();
 
   this->window->setFramerateLimit(80);
+}
+
+void Game::InitBackground() {
+  this->backgroundTexture.loadFromFile("assets/background.jpg");
+  this->backgroundSprite.setTexture(this->backgroundTexture);
+
+  // Resize the image to fit window
+  float x = this->window->getSize().x / this->backgroundSprite.getGlobalBounds().width;
+  float y = this->window->getSize().y / this->backgroundSprite.getGlobalBounds().height;
+  this->backgroundSprite.setScale(x, y);
 }
 
 Game::Game()
@@ -97,7 +108,12 @@ void Game::Update()
   }
 }
 
-void Game::RenderEnemies(sf::RenderWindow *window) {
+void Game::RenderBackground(sf::RenderWindow *window) {
+  window->draw(this->backgroundSprite);
+}
+
+void Game::RenderEnemies(sf::RenderWindow *window)
+{
   for (auto &e: this->enemies) {
     e.Render(window);
   }
@@ -107,6 +123,7 @@ void Game::Render()
 {
   this->window->clear();
   
+  this->RenderBackground(this->window);
   this->RenderEnemies(this->window);
 
   this->window->display();
