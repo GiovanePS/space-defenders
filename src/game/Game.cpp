@@ -24,7 +24,9 @@ void Game::InitWindow()
 }
 
 void Game::InitBackground() {
-  this->backgroundTexture.loadFromFile("assets/background.jpg");
+  if (!this->backgroundTexture.loadFromFile("assets/background.jpg")) {
+    std::cout << "Error on loading background asset." << "\n";
+  }
   this->backgroundSprite.setTexture(this->backgroundTexture);
 
   // Resize the image to fit window
@@ -84,7 +86,7 @@ void Game::UpdateEnemies() {
   }
 
   for (int i = 0; i < this->enemies.size(); i++) {
-    this->enemies[i].Move(0.0f, 1.0f);
+    this->enemies[i].Move();
 
     // Deleting enemy if he passed on the screen limit
     if (this->enemies[i].GetPosition().y > this->window->getSize().y) {
