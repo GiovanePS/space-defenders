@@ -12,6 +12,8 @@
 // void *thread_printing(void *data);
 
 int main() {
+  std::srand(static_cast<unsigned>(time(NULL)));
+  
   Game game;
 
   while (game.IsRunning()) {
