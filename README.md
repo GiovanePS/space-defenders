@@ -31,7 +31,7 @@ mais de 50% das naves chegaram no solo  (derrota do jogador).
 cd space-defenders && \
 mkdir -p build && \
 cd build && \
-cmake --build . --target all
+cmake --build . --config Debug --target all --
 ```
 
 ### 3. Execute:
