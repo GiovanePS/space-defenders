@@ -9,14 +9,13 @@ class Animation {
 
     float totalTime;
     float switchTime;
-  
+
   public:
     sf::IntRect uvRect;
 
   public:
-    Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime);
+    Animation(sf::Texture *texture, sf::Vector2u imageCount, float switchTime);
     ~Animation();
 
     void Update(int row, float deltaTime);
-
 };

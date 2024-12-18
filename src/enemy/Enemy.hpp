@@ -1,7 +1,7 @@
 #pragma once
 
-#include <iostream>
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Enemy {
   private:
@@ -11,6 +11,7 @@ class Enemy {
     void InitVariables();
     void InitShape(sf::RenderWindow *window);
     void InitTexture();
+
   public:
     Enemy(sf::RenderWindow *window);
     ~Enemy();
@@ -20,5 +21,4 @@ class Enemy {
 
     void Update();
     void Render(sf::RenderTarget *target);
-
 };

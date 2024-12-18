@@ -1,9 +1,9 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <vector>
-#include <cmath>
 #include "../enemy/Enemy.hpp"
+#include <SFML/Graphics.hpp>
+#include <cmath>
+#include <vector>
 
 class Game {
   private:
@@ -30,6 +30,7 @@ class Game {
     void InitVariables();
     void InitWindow();
     void InitBackground();
+
   public:
     Game();
     ~Game();
