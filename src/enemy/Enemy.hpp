@@ -1,24 +1,25 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 class Enemy {
-  private:
-    sf::RectangleShape shape;
-    sf::Texture texture;
+private:
+  sf::Sprite sprite;
+  sf::Vector2f size;
+  static sf::Texture texture;
+  int frameIndex;
+  int frameCounter;
 
-    void InitVariables();
-    void InitShape(sf::RenderWindow *window);
-    void InitTexture();
+  void InitSizeAndPosition(sf::RenderWindow *window);
+  void InitSprite();
 
-  public:
-    Enemy(sf::RenderWindow *window);
-    ~Enemy();
+public:
+  Enemy(sf::RenderWindow *window);
+  ~Enemy();
 
-    sf::Vector2f GetPosition();
-    void Move();
+  sf::Vector2f GetPosition();
+  void Move();
 
-    void Update();
-    void Render(sf::RenderTarget *target);
+  void Update();
+  void Render(sf::RenderTarget *target);
 };

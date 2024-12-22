@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include <iostream>
 
 void Game::InitVariables() {
     this->window = nullptr;
@@ -25,7 +26,8 @@ void Game::InitWindow() {
 
 void Game::InitBackground() {
     if (!this->backgroundTexture.loadFromFile("assets/background.jpg")) {
-        std::cout << "Error on loading background asset." << "\n";
+        std::cout << "ERROR::PLAYER::INITTEXTURE::Error on loading enemy asset."
+                  << "\n";
     }
     this->backgroundSprite.setTexture(this->backgroundTexture);
 
@@ -59,6 +61,8 @@ void Game::PollEvents() {
             if (event.key.code == sf::Keyboard::Escape) {
                 this->window->close();
             }
+            break;
+        default:
             break;
         }
     }
