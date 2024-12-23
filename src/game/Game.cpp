@@ -26,7 +26,8 @@ void Game::InitWindow() {
 
 void Game::InitBackground() {
     if (!this->backgroundTexture.loadFromFile("assets/background.jpg")) {
-        std::cout << "ERROR::PLAYER::INITTEXTURE::Error on loading enemy asset."
+        std::cout << "ERROR::GAME::INITTEXTURE::Error on loading background "
+                     "game asset."
                   << "\n";
     }
     this->backgroundSprite.setTexture(this->backgroundTexture);
@@ -42,6 +43,7 @@ void Game::InitBackground() {
 Game::Game() {
     this->InitVariables();
     this->InitWindow();
+	this->InitPlayer(this->window);
 }
 
 Game::~Game() { delete this->window; }
@@ -66,6 +68,14 @@ void Game::PollEvents() {
             break;
         }
     }
+}
+
+void Game::InitPlayer(sf::RenderWindow *window) {
+    this->player = new Player(window);
+}
+
+void Game::UpdatePlayer() {
+	this->player->Movement(this->window);
 }
 
 void Game::SpawnEnemy(sf::RenderWindow *window) {
@@ -99,6 +109,7 @@ void Game::Update() {
 
     if (!this->endGame) {
         this->UpdateEnemies();
+		this->UpdatePlayer();
     }
 
     if (this->health <= 0) {
@@ -108,6 +119,10 @@ void Game::Update() {
 
 void Game::RenderBackground(sf::RenderWindow *window) {
     window->draw(this->backgroundSprite);
+}
+
+void Game::RenderPlayer(sf::RenderWindow *window) {
+    this->player->Render(window);
 }
 
 void Game::RenderEnemies(sf::RenderWindow *window) {
@@ -121,6 +136,7 @@ void Game::Render() {
 
     this->RenderBackground(this->window);
     this->RenderEnemies(this->window);
+    this->RenderPlayer(this->window);
 
     this->window->display();
 }

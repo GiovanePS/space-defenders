@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../enemy/Enemy.hpp"
+#include "../player/Player.hpp"
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <vector>
@@ -25,6 +26,7 @@ class Game {
 
     // Game objects
 
+	Player *player;
     std::vector<Enemy> enemies;
 
     void InitVariables();
@@ -44,12 +46,15 @@ class Game {
 
     void PollEvents();
 
+	void InitPlayer(sf::RenderWindow *window);
     void SpawnEnemy(sf::RenderWindow *window);
 
+	void UpdatePlayer();
     void UpdateEnemies();
     void Update();
 
     void RenderBackground(sf::RenderWindow *window);
+	void RenderPlayer(sf::RenderWindow *window);
     void RenderEnemies(sf::RenderWindow *window);
     void Render();
 };

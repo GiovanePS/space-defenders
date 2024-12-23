@@ -22,13 +22,11 @@ void Enemy::InitSprite() {
                   << "\n";
     }
 
-    this->frameIndex = 0;
-	this->frameCounter = 0;
     this->sprite.setTexture(texture);
     this->sprite.setTextureRect(sf::IntRect(0, 0, 400, 400));
 }
 
-Enemy::Enemy(sf::RenderWindow *window) {
+Enemy::Enemy(sf::RenderWindow *window) : frameIndex(0), frameCounter(0) {
     this->InitSprite();
     this->InitSizeAndPosition(window);
 }
